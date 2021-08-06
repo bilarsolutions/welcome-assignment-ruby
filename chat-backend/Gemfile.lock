@@ -162,6 +162,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     thor (1.1.0)
+    timecop (0.9.4)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.5)
@@ -184,6 +185,7 @@ DEPENDENCIES
   shoulda-matchers (~> 5.0)
   spring
   sqlite3 (~> 1.4)
+  timecop
   tzinfo-data
 
 RUBY VERSION

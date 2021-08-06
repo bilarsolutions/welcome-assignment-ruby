@@ -67,6 +67,7 @@ RSpec.describe "/messages", type: :request do
           expect(response).to have_http_status(:created)
           expect(response.content_type).to match(a_string_including("application/json"))
         end
+
       end
 
       context "with invalid parameters" do
