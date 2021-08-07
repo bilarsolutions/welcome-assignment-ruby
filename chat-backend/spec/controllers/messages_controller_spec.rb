@@ -22,15 +22,15 @@ RSpec.describe MessagesController, type: :controller do
       end
 
       it 'broadcasts message' do
-        message = nil
         expect do
           post :create, params: { message: { body: 'Hello world!!' } }
-        end.to \
-          have_broadcasted_to("messages").with({
-              "id": 1, "user_id":user.id, "body":"Hello world!!",
-              "created_at":"2021-08-06T14:42:00.000Z","updated_at":"2021-08-06T14:42:00.000Z",
-              "name":user.name
-            })
+        end.to have_broadcasted_to("messages").with do |data|
+          expect(data).to eq({
+            "id": Message.last.id, "user_id":user.id, "body":"Hello world!!",
+            "created_at":"2021-08-06T14:42:00.000Z","updated_at":"2021-08-06T14:42:00.000Z",
+            "name":user.name
+          })
+        end
       end
     end
   end
