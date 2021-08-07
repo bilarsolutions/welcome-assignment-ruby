@@ -1,16 +1,11 @@
 class MessagesController < ApplicationController
   # GET /messages
   def index
-    @messages = Message.all
-
-    render json: @messages
+    @messages = Message.includes(:user)
   end
 
   # POST /messages
   def create
-
-logger.fatal "----------------"
-
     @message = Message.new(message_params)
     @message.user = current_user
 

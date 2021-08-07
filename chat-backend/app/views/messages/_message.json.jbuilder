@@ -1,2 +1,1 @@
-json.(message, :id, :body)
-json.user message.user, partial: 'users/user', as: :user
+json.(message, :id, :body, :name, :created_at)
