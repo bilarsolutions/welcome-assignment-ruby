@@ -14,6 +14,8 @@
 
 <script>
 import dateFns from "date-fns";
+import ActionCable from "actioncable";
+const cable = ActionCable.createConsumer("ws://localhost:3001/cable");
 
 export default {
   filters: {
@@ -23,6 +25,21 @@ export default {
   },
   created() {
     this.$store.dispatch("getMessages");
+
+    cable.subscriptions.create({
+        channel: "MessagesChannel"
+      }, {
+        connected: function() {
+          console.log("connected");
+        },
+        disconnected: function() {
+          console.log("disconnected");
+        },
+        received: (data) => {
+          this.messages.unshift(data.message);
+        }
+    })
+
   },
   computed: {
     messages() {
